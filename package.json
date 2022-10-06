@@ -1,0 +1,45 @@
+{
+  "name": "lastfm-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon -r dotenv/config src/index.js",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "start": "node src/index.js",
+    "test": "npm run lint && nyc --reporter=html --reporter=text mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whatagoodbot/lastfm-client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whatagoodbot/lastfm-client/issues"
+  },
+  "homepage": "https://github.com/whatagoodbot/lastfm-client#readme",
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "dotenv": "^16.0.2",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "nyc": "^15.1.0",
+    "standard": "^17.0.0"
+  },
+  "dependencies": {
+    "hot-shots": "^9.2.0",
+    "message-broker": "github:whatagoodbot/message-broker",
+    "simple-lastfm": "^1.0.6",
+    "winston": "^3.8.2",
+    "winston-syslog": "^2.6.0"
+  }
+}
