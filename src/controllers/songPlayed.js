@@ -46,7 +46,7 @@ const scrobbleTrack = async (lastfmInstance, artist, track) => {
 }
 
 export default async payload => {
-  scrobbleTrack(defaultLastfmInstance, payload.artist, payload.title)
+  scrobbleTrack(defaultLastfmInstance, payload.meta.artist, payload.meta.title)
   let roomSpecificLastfmAccount
   try {
     roomSpecificLastfmAccount = JSON.parse(payload.meta.roomConfig.lastfm)
@@ -60,6 +60,6 @@ export default async payload => {
       username: roomSpecificLastfmAccount.username,
       password: roomSpecificLastfmAccount.password
     })
-    scrobbleTrack(roomLastfmInstance, payload.artist, payload.title)
+    scrobbleTrack(roomLastfmInstance, payload.meta.artist, payload.meta.title)
   }
 }
