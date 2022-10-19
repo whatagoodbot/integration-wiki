@@ -1,5 +1,4 @@
 import { createRequire } from 'module'
-import { logger } from '../utils/logging.js'
 
 const require = createRequire(import.meta.url)
 const Lastfm = require('simple-lastfm')
@@ -46,20 +45,10 @@ const scrobbleTrack = async (lastfmInstance, artist, track) => {
 }
 
 export default async payload => {
-  scrobbleTrack(defaultLastfmInstance, payload.meta.artist, payload.meta.title)
-  let roomSpecificLastfmAccount
-  try {
-    roomSpecificLastfmAccount = JSON.parse(payload.meta.roomConfig.lastfm)
-  } catch (error) {
-    logger.error(error)
-  }
+  scrobbleTrack(defaultLastfmInstance, payload.artist, payload.title)
+  const roomSpecificLastfmAccount = payload.meta.roomConfig.lastfm
   if (roomSpecificLastfmAccount?.enabled) {
-    const roomLastfmInstance = await createLastfmInstance({
-      api_key: roomSpecificLastfmAccount.api_key,
-      api_secret: roomSpecificLastfmAccount.api_secret,
-      username: roomSpecificLastfmAccount.username,
-      password: roomSpecificLastfmAccount.password
-    })
-    scrobbleTrack(roomLastfmInstance, payload.meta.artist, payload.meta.title)
+    const roomLastfmInstance = await createLastfmInstance(roomSpecificLastfmAccount)
+    scrobbleTrack(roomLastfmInstance, payload.artist, payload.title)
   }
 }
