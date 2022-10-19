@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "hot-shots": "^9.2.0",
-    "message-broker": "github:whatagoodbot/message-broker",
+    "message-broker": "github:whatagoodbot/message-broker#v2.0.0",
     "simple-lastfm": "^1.0.6",
     "winston": "^3.8.2",
     "winston-syslog": "^2.6.0"
