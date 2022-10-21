@@ -40,4 +40,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: whatagoodbot/lastfm-client:latest,whatagoodbot/lastfm-client:2.0.0
+          tags: whatagoodbot/lastfm-client:latest,whatagoodbot/lastfm-client:3.0.0

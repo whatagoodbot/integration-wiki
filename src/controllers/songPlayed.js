@@ -1,4 +1,5 @@
 import { createRequire } from 'module'
+import { logger } from '../utils/logging.js'
 
 const require = createRequire(import.meta.url)
 const Lastfm = require('simple-lastfm')
@@ -20,6 +21,7 @@ const defaultLastfmInstance = await createLastfmInstance({
 })
 
 const scrobbleTrack = async (lastfmInstance, artist, track) => {
+  logger.debug(`Scrobbling ${track} by ${artist}`)
   if (process.env.NODE_ENV === 'development') return
   const promises = [
     new Promise(resolve => {
@@ -45,10 +47,14 @@ const scrobbleTrack = async (lastfmInstance, artist, track) => {
 }
 
 export default async payload => {
-  scrobbleTrack(defaultLastfmInstance, payload.artist, payload.title)
-  const roomSpecificLastfmAccount = payload.meta.roomConfig.lastfm
-  if (roomSpecificLastfmAccount?.enabled) {
-    const roomLastfmInstance = await createLastfmInstance(roomSpecificLastfmAccount)
-    scrobbleTrack(roomLastfmInstance, payload.artist, payload.title)
+  scrobbleTrack(defaultLastfmInstance, payload.nowPlaying.artist, payload.nowPlaying.title)
+  if (payload.room.lastfm.enabled) {
+    const roomLastfmInstance = await createLastfmInstance({
+      api_key: payload.room.lastfm.apiKey,
+      api_secret: payload.room.lastfm.apiSecret,
+      username: payload.room.lastfm.username,
+      password: payload.room.lastfm.password
+    })
+    scrobbleTrack(roomLastfmInstance, payload.nowPlaying.artist, payload.nowPlaying.title)
   }
 }

@@ -43,7 +43,7 @@ broker.client.on('message', async (topic, data) => {
     await controllers[topicName](requestPayload)
     metrics.timer('responseTime', performance.now() - startTime, { topic })
   } catch (error) {
-    console.log(error.message)
+    logger.error(error.message)
     metrics.count('error', { topicName })
   }
 })
