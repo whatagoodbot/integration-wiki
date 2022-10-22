@@ -1,7 +1,7 @@
 import queryWiki from '../libs/wiki.cjs'
 
 export default async payload => {
-  const firstAttempt = await queryWiki(payload.nowPlaying.artist)
+  const firstAttempt = await queryWiki(`${payload.nowPlaying.artist} (band)`)
   if (firstAttempt) {
     return {
       topic: 'broadcast',
@@ -11,7 +11,7 @@ export default async payload => {
       }
     }
   } else {
-    const secondAttempt = await queryWiki(`${payload.nowPlaying.artist} (band)`)
+    const secondAttempt = await queryWiki(`${payload.nowPlaying.artist} (musician)`)
     if (secondAttempt) {
       return {
         topic: 'broadcast',
@@ -21,7 +21,7 @@ export default async payload => {
         }
       }
     } else {
-      const thirdAttempt = await queryWiki(`${payload.nowPlaying.artist} (musician)`)
+      const thirdAttempt = await queryWiki(payload.nowPlaying.artist)
       if (thirdAttempt) {
         return {
           topic: 'broadcast',
