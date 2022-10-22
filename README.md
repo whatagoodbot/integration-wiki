@@ -1,2 +1,2 @@
 
-# Client to interact with Last.fm
+# Client to interact with wikipedia

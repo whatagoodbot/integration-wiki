@@ -1,6 +1,6 @@
 {
-  "name": "lastfm-client",
-  "version": "3.0.0",
+  "name": "wiki-client",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whatagoodbot/lastfm-client.git"
+    "url": "git+https://github.com/whatagoodbot/wiki-client.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/whatagoodbot/lastfm-client/issues"
+    "url": "https://github.com/whatagoodbot/wiki-client/issues"
   },
-  "homepage": "https://github.com/whatagoodbot/lastfm-client#readme",
+  "homepage": "https://github.com/whatagoodbot/wiki-client#readme",
   "standard": {
     "env": [
       "mocha"
@@ -40,6 +40,7 @@
     "hot-shots": "^9.2.0",
     "message-broker": "github:whatagoodbot/message-broker#v3.0.0",
     "simple-lastfm": "^1.0.6",
+    "wikijs": "^6.3.3",
     "winston": "^3.8.2",
     "winston-syslog": "^2.6.0"
   }
